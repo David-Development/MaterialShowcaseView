@@ -886,13 +886,13 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         mWasSkipped = true;
 
         if (mShouldAnimate) {
-            fadeOut();
+            animateOut();
         } else {
             removeFromWindow();
         }
     }
 
-    public void fadeIn() {
+    public void animateIn() {
         setVisibility(INVISIBLE);
         mAnimationFactory.animateInView(this, mTarget.getPoint(), mFadeDurationInMillis,
                 new IAnimationFactory.AnimationStartListener() {
