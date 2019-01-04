@@ -82,6 +82,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
     private IDetachedListener mDetachedListener;
     private boolean mTargetTouchable = false;
     private boolean mDismissOnTargetTouch = true;
+    private boolean mHideSkipButton = false;
 
     private boolean isSequence = false;
 
@@ -724,6 +725,11 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
             return this;
         }
 
+        public Builder setHideSkipButton(boolean hide) {
+            showcaseView.mHideSkipButton = hide;
+            return this;
+        }
+
         public Builder withRectangleShape() {
             return withRectangleShape(false);
         }
@@ -827,6 +833,9 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
      * @return
      */
     public boolean show(final Activity activity) {
+        if(mHideSkipButton) {
+            mSkipButton.setVisibility(GONE);
+        }
 
         /**
          * if we're in single use mode and have already shot our bolt then do nothing

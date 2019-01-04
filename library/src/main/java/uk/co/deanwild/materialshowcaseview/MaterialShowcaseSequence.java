@@ -30,11 +30,18 @@ public class MaterialShowcaseSequence implements IDetachedListener {
     }
 
     public MaterialShowcaseSequence addSequenceItem(View targetView, String content, String dismissText) {
-        addSequenceItem(targetView, "", content, dismissText);
-        return this;
+        return addSequenceItem(targetView, "", content, dismissText);
+    }
+
+    public MaterialShowcaseSequence addSequenceItem(View targetView, String content, String dismissText, boolean hideSkipButton) {
+        return addSequenceItem(targetView, "", content, dismissText, hideSkipButton);
     }
 
     public MaterialShowcaseSequence addSequenceItem(View targetView, String title, String content, String dismissText) {
+       return addSequenceItem(targetView, title, content, dismissText, false);
+    }
+
+    public MaterialShowcaseSequence addSequenceItem(View targetView, String title, String content, String dismissText, boolean hideSkipButton) {
 
         MaterialShowcaseView sequenceItem = new MaterialShowcaseView.Builder(mActivity)
                 .setTarget(targetView)
@@ -42,6 +49,7 @@ public class MaterialShowcaseSequence implements IDetachedListener {
                 .setDismissText(dismissText)
                 .setContentText(content)
                 .setSequence(true)
+                .setHideSkipButton(hideSkipButton)
                 .build();
 
         if (mConfig != null) {
